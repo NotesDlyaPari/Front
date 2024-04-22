@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}">
+    <title>Notes</title>
+</head>
+<body>
+    <h1>Notes</h1>
+    <form action="/notes" method="post">
+        <label for="author">Author:</label><br>
+        <input type="text" id="author" name="author"><br>
+        <label for="content">Content:</label><br>
+        <textarea id="content" name="content" rows="4" cols="50"></textarea><br><br>
+        <input type="submit" value="Save Note">
+    </form>
+    <h2>Your Notes:</h2>
+    {% if notes %}
+        {% for note in notes %}
+            <div class="note">
+                <p><strong>{{ note.author }}</strong></p>
+                <p>{{ note.content }}</p>
+            </div>
+        {% endfor %}
+    {% else %}
+        <p>No notes yet.</p>
+    {% endif %}
+</body>
+</html>
